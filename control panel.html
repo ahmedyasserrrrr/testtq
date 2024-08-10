@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-7fV9x2Aua0m7L5t5N+dyNbUdL88k0A8BzwJe4f7sF3ajJpZIC4WReMChujVf7reZIw7LnbWShs2qVhRO5y5iJw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Changa&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+        body {
+            font-family: "Changa", sans-serif;
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            right: 0;
+            background-color: #0A284E;
+            overflow-x: hidden;
+            transition: width 0.5s ease;
+            padding-top: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        @media screen and (max-width: 992px) {
+            .sidenav {
+                width: 0;
+            }
+        }
+
+        .navbar-toggler {
+            color: #fff;
+            border: none;
+        }
+
+        .navbar-toggler:focus {
+            outline: none;
+        }
+
+        .container-main {
+            padding-right: 0; /* تأكد من عدم وجود padding-right افتراضي */
+            transition: padding-right 0.5s;
+            
+        }
+
+        @media screen and (min-width: 992px) {
+            .container-main {
+                padding-right: 250px; /* زيادة padding-right لتفادي تغطية المحتوى */
+            }
+        }
+
+        .sidenav a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            left: auto;
+            position: static;
+            
+            display: flex;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #fff;
+        }
+            @media (min-width: 992px) {
+        .customers-table {
+            width: calc(100% - 250px); /* جعل عرض الجدول يأخذ باقي المساحة عند فتح الحافة الجانبية */
+            margin-left: 250px; /* تحريك الجدول إلى اليمين لتفادي تغطية الحافة الجانبية */
+        }
+    }
+
+    /* تعديل حجم الجدول على شاشات صغيرة */
+    @media (max-width: 991px) {
+        .customers-table {
+            width: 100%; /* جعل الجدول يأخذ العرض الكامل عندما تكون الشاشة صغيرة */
+            margin-left: 0; /* إعادة تعيين التباعد الأيسر للجدول */
+        }
+    }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            left: 25px;
+            font-size: 36px;
+            margin-right: 50px;
+        }
+
+        .nav-icons {
+            display: none;
+        }
+
+        .nav-icons.active {
+            display: block;
+            cursor: pointer;
+        }
+
+        .navbar {
+            background-color: #fff; /* لون خلفية Navbar */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* إضافة ظل للناف بار */
+            position: fixed;
+            width: 100%; /* عرض الناف بار على الشاشة بالكامل */
+            z-index: 2; /* تحديد الترتيب الظاهري فوق الصفحة */
+            top: 0; /* تثبيت الناف بار في أعلى الصفحة */
+            text-align: center; /* محاذاة العناصر في الناف بار بالوسط */
+        }
+
+        .navbar-brand {
+            color: #0A284E; /* لون النص للعلامة التجارية */
+            font-weight: bold; /* سمك الخط */
+            padding: 15px 0; /* تباعد النص داخل العلامة التجارية */
+            display: block; /* عرض العلامة التجارية كعنصر بلوك */
+        }
+
+        .navbar-nav {
+            margin: 0 auto; /* توسيط الروابط داخل الناف بار */
+        }
+
+        .nav-item {
+            display: inline-block; /* عرض العناصر كعناصر متجانسة */
+            margin-left: 20px; /* تباعد بين العناصر */
+        }
+
+        .nav-link {
+            color: #0A284E; /* لون النص للروابط */
+            font-weight: 500; /* سمك الخط */
+            text-decoration: none; /* إزالة تزيين الروابط */
+            padding: 15px 10px; /* تباعد النص داخل الروابط */
+            transition: all 0.3s ease; /* تحويل التحولات لجميع الخصائص */
+        }
+
+        .nav-link:hover {
+            color: #fff; /* لون النص عند التحويم */
+            border-radius: 5px; /* تدوير الزوايا للروابط عند التحويم */
+        }
+
+        .stats-section {
+            padding: 30px ;
+            text-align: center;
+            font-size: small;
+
+        }
+
+        .stats-card1 {
+            background-color: #fff;
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid #0A284E;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .stats-card2 {
+            background-color: #fff;
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid red;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .stats-card3 {
+            background-color: #fff;
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid seagreen;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .stats-card4 {
+            background-color: #fff;
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid #C2E0C6;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .stats-card5 {
+            background-color: #fff;
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid #F5D0E8;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .stats-card6 {
+            background-color: #fff;
+            padding: 8px;
+            margin: 8px;
+            border: 1px solid rgb(204,153, 255);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            font-size: 6px;
+        }
+
+        .requests-section {
+            padding: 50px 0;
+            text-align: right;
+        }
+        .requestss-section {
+            padding:30px 0;
+            margin-top: 40px;
+            text-align: right;
+        }
+
+
+        .table-container {
+            width: 98%;
+            margin: 50px auto;
+            overflow-x: auto;
+            background-color: #fff;
+            border-radius: 5px;
+            /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 12px 15px;
+        }
+
+        th {
+            background-color: #0A284E;
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #0A284E;
+            color: white;
+        }
+
+        @media screen and (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+
+            tr {
+                margin-bottom: 15px;
+            }
+
+            td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 0;
+                width: 50%;
+                padding-left: 15px;
+                font-weight: bold;
+                text-align: left;
+            }
+            tbody tr:last-of-type {
+            border-bottom: 2px solid #3498db;
+        }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-white bg-white shadow-sm fixed">
+    <div class="container">
+        <a class="navbar-brand" href="index.html" style="color: #0A284E;">الرئيسية</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+     
+    </div>
+ </nav>
+ <script>
+
+</script>
+ <div class="sidenav">
+    <div style="text-align: center; margin-bottom: 30px; ">
+        <img src="images/Asset 1.png"  width="100px" style="justify-content: center;  margin: auto;" alt="">
+
+    </div>
+    <style>
+        /* أسلوب اختياري لتخصيص حجم الأيقونات */
+        .fa {
+            font-size: 24px;
+            margin-right: 5px; /* تعديل حسب الحاجة */
+        }
+    </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <a href="index.html" >  <i class="fas fa-home" style="margin-top: 2px ; padding: 2px;"></i> الرئيسية  </a> 
+    <a href="#">      <i class="fas fa-users" style="margin-top: 3px ; padding: 2px;"></i>
+        المستخدمين</a>
+    <a href="استكشاف.html">      <i class="fas fa-tasks" style="margin-top: 3px ; padding: 2px;"></i>
+        مشاريع   </a>
+    <a href="#">    <i class="far fa-calendar-check" style="margin-top: 3px ; padding: 2px;"></i>
+حجوزات    </a>
+    <a href="test.html">     <i class="far fa-image"  style="margin-top: 3px ; padding: 2px;"></i>
+صور    </a>
+</div>
+ <div class="container-main">
+  
+    <div class="stats-section">
+        <div class="container">
+            <div class="requestss-section">
+                <div class="container">
+                    <h2> الاحصائيات</h2>
+                </div>
+            </div>    
+            <div class="row">
+                
+                <div class="col-md-4">
+                    <div class="stats-card1">
+                        <h5> اجمالي الطلبات: 234</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card2">
+                        <h5>لم يتم الرد: 36</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card3">
+                        <h5> تم الاتصال: 257</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- الأسطر الإضافية للإحصائيات -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="stats-card4">
+                        <h5>تم الموافقه: 0</h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card5">
+                        <h5>تم البيع: 0 </h3>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stats-card6">
+                        <h5>خيارات اخري </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="requests-section">
+        <div class="container">
+            <h2>آخر الطلبات</h2>
+            <p>قائمة بآخر الطلبات التي تلقيناها.</p>
+        </div>
+    </div>
+   
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>رقم العقار</th>
+                <th>اسم العقار</th>
+                <th>الموقع</th>
+                <th>السعر</th>
+                <th>المساحة</th>
+                <th>عدد الغرف</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="رقم العقار">1</td>
+                <td data-label="اسم العقار">فيلا فاخرة</td>
+                <td data-label="الموقع">الرياض</td>
+                <td data-label="السعر">2,000,000 SAR</td>
+                <td data-label="المساحة">500 م²</td>
+                <td data-label="عدد الغرف">5</td>
+            </tr>
+            <tr>
+                <td data-label="رقم العقار">2</td>
+                <td data-label="اسم العقار">شقة حديثة</td>
+                <td data-label="الموقع">جدة</td>
+                <td data-label="السعر">1,200,000 SAR</td>
+                <td data-label="المساحة">200 م²</td>
+                <td data-label="عدد الغرف">3</td>
+            </tr>
+            <tr>
+                <td data-label="رقم العقار">3</td>
+                <td data-label="اسم العقار">بيت تقليدي</td>
+                <td data-label="الموقع">الدمام</td>
+                <td data-label="السعر">850,000 SAR</td>
+                <td data-label="المساحة">300 م²</td>
+                <td data-label="عدد الغرف">4</td>
+            </tr>
+            <tr>
+                <td data-label="رقم العقار">4</td>
+                <td data-label="اسم العقار">مكتب تجاري</td>
+                <td data-label="الموقع">الخبر</td>
+                <td data-label="السعر">1,500,000 SAR</td>
+                <td data-label="المساحة">400 م²</td>
+                <td data-label="عدد الغرف">6</td>
+            </tr>
+            <tr>
+                <td data-label="رقم العقار">5</td>
+                <td data-label="اسم العقار">فيلا عصرية</td>
+                <td data-label="الموقع">مكة</td>
+                <td data-label="السعر">3,000,000 SAR</td>
+                <td data-label="المساحة">600 م²</td>
+                <td data-label="عدد الغرف">7</td>
+            </tr>
+            <tr>
+                <td data-label="رقم العقار">6</td>
+                <td data-label="اسم العقار">شقة صغيرة</td>
+                <td data-label="الموقع">الطائف</td>
+                <td data-label="السعر">750,000 SAR</td>
+                <td data-label="المساحة">150 م²</td>
+                <td data-label="عدد الغرف">2</td>
+            </tr>
+            <tr>
+                <td data-label="رقم العقار">6</td>
+                <td data-label="اسم العقار">شقة صغيرة</td>
+                <td data-label="الموقع">الطائف</td>
+                <td data-label="السعر">750,000 SAR</td>
+                <td data-label="المساحة">150 م²</td>
+                <td data-label="عدد الغرف">2</td>
+            </tr>
+            <tr>
+                <td data-label="رقم العقار">6</td>
+                <td data-label="اسم العقار">شقة صغيرة</td>
+                <td data-label="الموقع">الطائف</td>
+                <td data-label="السعر">750,000 SAR</td>
+                <td data-label="المساحة">150 م²</td>
+                <td data-label="عدد الغرف">2</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidenav = document.querySelector('.sidenav');
+            const navIcons = document.querySelector('.navbar-toggler');
+            const closeBtn = document.querySelector('.closebtn');
+    
+            // فتح القائمة الجانبية من اليمين
+            navIcons.addEventListener('click', function() {
+                if (window.innerWidth <= 992) {
+                    sidenav.style.width = '250px'; // تعيين عرض القائمة على الشاشات الصغيرة
+                }
+            });
+    
+       
+        function openNav() {
+        document.getElementById(".sidenav").style.width = "250px";
+        document.getElementById("main").style.marginRight = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById(".sidenav").style.width = "0";
+        document.getElementById("main").style.marginRight = "0";
+    }
+    
+        // فتح القائمة الجانبية عند النقر على الايقونة
+        navbarToggler.addEventListener('click', function() {
+            sidenav.style.width = '250px';
+        });
+
+    </script>
+</body>
+</html>
